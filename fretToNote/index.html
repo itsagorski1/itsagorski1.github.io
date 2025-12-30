@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Fret to Note</title>
+        <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+        <script src="back.js"></script>
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body><div id="out"><p>That note is:</p><div id=text></div></div>
+        <p>
+            <form>
+                <label for="tuning">Tuning: (no drop/opens)<br>>> </label>
+                <input id="tuning" name="tuning" type="number"><br>
+                <label for="string">String:<br>>> </label>
+                <input id="string" name="string" type="text" required><br>
+                <label for="fret">Fret:<br>>> </label>
+                <input id="fret" name="fret" type="number" required><br>
+                <input type="submit" value="Get Note!" id="submit">
+            </form>
+        </p>
+    </body>
+</html>
