@@ -1,22 +1,34 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>Fret to Note</title>
-        <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-        <script src="back.js"></script>
-        <link rel="stylesheet" href="style.css">
-    </head>
-    <body><div id="out"><p>That note is:</p><div id=text></div></div>
-        <p>
-            <form>
-                <label for="tuning">Tuning: (no drop/opens)<br>>> </label>
-                <input id="tuning" name="tuning" type="number"><br>
-                <label for="string">String:<br>>> </label>
-                <input id="string" name="string" type="text" required><br>
-                <label for="fret">Fret:<br>>> </label>
-                <input id="fret" name="fret" type="number" required><br>
-                <input type="submit" value="Get Note!" id="submit">
-            </form>
-        </p>
-    </body>
+<head>
+    <title>Fret to Note</title>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="back.js"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<header>
+    <p><a href="../">Home</a><a href="./">Fret To Note</a></p>
+</header>
+<body>
+    <div id="out">
+        <p>That note is:</p>
+        <div id="text"></div>
+    </div>
+    <form>
+        <label for="tuning">Tuning: (no drop/opens)<br>>></label>
+        <input id="tuning" name="tuning" type="number" value="0"><br>
+        <label for="string">String:<br>>></label>
+        <select id="string" name="string" required>
+            <option value="E">E (6th)</option>
+            <option value="A">A (5th)</option>
+            <option value="D">D (4th)</option>
+            <option value="G">G (3rd)</option>
+            <option value="B">B (2nd)</option>
+            <option value="e'">e' (1st)</option>
+        </select><br>
+        <label for="fret">Fret:<br>>></label>
+        <input id="fret" name="fret" type="number" required value="0"><br>
+        <input type="button" value="Get Note!" id="submit">
+    </form>
+</body>
 </html>
