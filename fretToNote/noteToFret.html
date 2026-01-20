@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+<meta charset="UTF-8">
+<title>Note To Fret</title>
+<script src="noteToFret.js"></script>
+<style>
+body{margin:0;font-family:Arial,sans-serif;background:#f0f4f8;color:#333;display:flex;flex-direction:column;min-height:100vh}
+header{width:100%;text-align:center;background:#fff;padding:20px 0;box-shadow:0 2px 8px rgba(0,0,0,.1);font-family:"Times New Roman",serif}
+header a{margin:0 15px;color:#1a73e8;text-decoration:none;font-weight:bold;font-size:.4375in}
+main{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:20px}
+.out{background:#fff;padding:20px 25px;border-radius:10px;box-shadow:0 4px 12px rgba(0,0,0,.1);text-align:center}
+.text{font-size:20px;font-weight:bold;color:#1a73e8;margin-top:10px}
+form{background:#fff;padding:25px;border-radius:10px;box-shadow:0 4px 12px rgba(0,0,0,.1);width:300px}
+label{font-weight:bold;display:block;margin-top:10px}
+input{width:100%;padding:8px;margin-top:5px}
+input[type=submit]{margin-top:15px;background:#1a73e8;color:#fff;border:none;border-radius:6px;font-weight:bold;cursor:pointer}
+footer{background:#222;color:#eee;text-align:center;padding:15px 0;font-size:.9em}
+</style>
+</head>
+<body>
+<header><a href="./">Home</a><a href="index.html">Fret To Note</a><a href="noteToFret.html">Note To Fret</a></header>
+<main>
+<div class="out"><p>That note corresponds to:</p><div class="text"></div></div>
+<form>
+<label for="note">Note</label>
+<input type="text" id="note" required>
+<label for="octave">Octave</label>
+<input type="number" id="octave" min="2" max="5" required>
+<input type="submit" value="Get Fret">
+</form>
+</main>
+<footer>Copyright © 2025 Jonah Gorski. Unauthorized use prohibited.</footer>
+</body>
+</html>
