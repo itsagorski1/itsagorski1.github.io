@@ -1,10 +1,24 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en-us">
 <head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
+<meta charset="UTF-8">
+<title>Solo Creator</title>
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
-$END$
+<div class="controls">
+<select id="key">
+<option>A</option><option>C</option><option>D</option><option>E</option><option>G</option>
+</select>
+<select id="mode">
+<option value="minor">Minor</option>
+<option value="major">Major</option>
+</select>
+<label for="length">Length (in bars):</label>
+<input type="range" id="length" min="0" max="16" value="1">
+<button id="gen">Generate Solo</button>
+</div>
+<div class="output" id="out"></div>
+<script src="solo.js"></script>
 </body>
 </html>
