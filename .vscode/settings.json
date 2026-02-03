@@ -1,3 +1,4 @@
 {
-    "editor.allowVariableFontsInAccessibilityMode": false
+    "editor.allowVariableFontsInAccessibilityMode": false,
+    "editor.aiStats.enabled": true
 }
