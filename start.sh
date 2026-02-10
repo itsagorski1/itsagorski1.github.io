@@ -3,6 +3,69 @@ set -euo pipefail
 PORT=8080
 INTERRUPT_SECONDS=""
 
+ensure_command() {
+  local name="$1"
+  if ! command -v "$name" >/dev/null 2>&1; then
+    echo "$name not found. Installing via npm..."
+    npm install -g "$name"
+  fi
+}
+
+ensure_wsl_native_command() {
+  local name="$1"
+  if grep -qi microsoft /proc/version 2>/dev/null; then
+    local path
+    path="$(command -v "$name" 2>/dev/null || true)"
+    if [[ -n "$path" && "$path" == /mnt/c/* ]]; then
+      echo "WSL detected: $name is pointing to a Windows shim ($path)."
+      echo "Please install a Linux-native $name inside WSL and try again."
+      exit 1
+    fi
+  fi
+}
+ensure_wsl_node() {
+  local is_wsl=false
+  if grep -qi microsoft /proc/version 2>/dev/null; then
+    is_wsl=true
+  fi
+
+  if [[ "$is_wsl" == "true" ]]; then
+    if ! command -v node >/dev/null 2>&1; then
+      echo "WSL detected and Node.js not found. Installing nodejs and npm..."
+      sudo apt update
+      sudo apt install -y nodejs npm
+    fi
+  fi
+}
+
+ensure_wsl_ngrok() {
+  local is_wsl=false
+  if grep -qi microsoft /proc/version 2>/dev/null; then
+    is_wsl=true
+  fi
+
+  if [[ "$is_wsl" == "true" ]]; then
+    local ngrok_path
+    ngrok_path="$(command -v ngrok 2>/dev/null || true)"
+    if [[ -z "$ngrok_path" || "$ngrok_path" == /mnt/c/* ]]; then
+      echo "WSL detected. Installing Linux ngrok..."
+      sudo apt update
+      sudo apt install -y curl unzip
+      curl -sSL https://ngrok-agent.s3.amazonaws.com/ngrok.asc | sudo tee /etc/apt/trusted.gpg.d/ngrok.asc >/dev/null
+      echo "deb https://ngrok-agent.s3.amazonaws.com buster main" | sudo tee /etc/apt/sources.list.d/ngrok.list >/dev/null
+      sudo apt update
+      sudo apt install -y ngrok
+    fi
+  fi
+}
+
+ensure_wsl_node
+ensure_command "http-server"
+ensure_command "ngrok"
+ensure_wsl_ngrok
+ensure_wsl_native_command "http-server"
+ensure_wsl_native_command "ngrok"
+
 usage() {
   echo "Usage: $0 [-p port] [-i seconds]"
 }

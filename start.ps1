@@ -7,6 +7,20 @@ param(
     [int]$InterruptSeconds
 )
 
+function Ensure-Command {
+    param(
+        [Parameter(Mandatory = $true)]
+        [string]$Name
+    )
+    if (-not (Get-Command $Name -ErrorAction SilentlyContinue)) {
+        Write-Host "$Name not found. Installing via npm..."
+        npm install -g $Name
+    }
+}
+
+Ensure-Command -Name "http-server"
+Ensure-Command -Name "ngrok"
+
 Write-Host "Starting HTTP server on port $Port"
 $httpJob = Start-Job -Name "http-server" -ScriptBlock {
     param($p)
